@@ -12,7 +12,12 @@
 // with the animal as the context, and 'Trogdor' as a parameter.
 // return the result of your updateAnimal invocation
 
-// CODE HERE...
+function callBinding(magicAnimals, updateAnimal, id) {
+    let x = magicAnimals.filter((animal) => animal.id === id);
+    updateAnimal.bind(x);
+    return updateAnimal('Trogdor');
+}
+
 
 
 
@@ -20,14 +25,11 @@
 // * PROBLEM 2 *
 // *************
 
-// For this question, you are asked to make a function called 'applyBinding'.
-// This function will take in 3 parameters:
-// magicAnimals (Array), updateAnimal (Function), id (Number).
-// Find the animal that matches the given id, then call the function
-// with the context of the animal, and the array ['being majestic', 'eating rainbows'] as a parameter.
-// return the result of your updateAnimal invocation
+function applyBinding(magicAnimals, updateAnimal, id) {
+    let x = magicAnimals.find((animal) => animal.id === id);
+    return updateAnimal.apply(x, ['being majestic', 'eating rainbows']);
+}
 
-// CODE HERE...
 
 
 
@@ -47,8 +49,15 @@
 
 var foo;
 
-// CODE HERE...
-
+function promiseMe() {
+    let custom = new Promise((resolve) => {
+        setTimeout((foo) => {
+            foo = 'bar';
+            resolve(foo);
+        }, 20);
+    });
+    return custom;
+}
 
 
 // *************
@@ -63,4 +72,9 @@ var foo;
 // Make an array of emails (array of strings) from the returned data (You will need to console log or debug to figure this out),
 // and then resolve the array as you complete your promise.
 
-// CODE HERE...
+function emailList() {
+    return arguments[0](arguments[1].get('/api/users'))
+        .then(res => res.data
+            .map((user) => user.email))
+        .catch(err => console.log(err));
+}

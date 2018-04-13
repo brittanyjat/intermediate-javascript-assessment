@@ -76,15 +76,14 @@ function noWeakLink() {
 // When boundToElephant gets called, it should return this exact string:
 // 'My name is Horton and I am very heavy!' (The above instructions should make this work.  No code needed for this paragraph)
 
-var elephant = {
+let elephant = {
   name: 'Horton'
 }
 function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
-
-let boundToElephant = large.bind(elephant)
+let boundToElephant = large.bind(elephant);
 
 
 
